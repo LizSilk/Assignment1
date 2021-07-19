@@ -5,7 +5,7 @@
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "Assinment1",
+			"Name": "Assignment1",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
