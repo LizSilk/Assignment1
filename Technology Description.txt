@@ -1,0 +1,32 @@
+Technology Description:
+The two technologies I used that I want to talk about were Navigation Meshes and Sphere Tracing.
+
+What is the support for the tech in Unreal?
+A Navigation Mesh is a mesh of polygons that is used for pathfinding. In Unreal, Navigation Meshes are automatically generated using a NavMeshBoundsVolume,
+ which will automatically generate a mesh of navigable surfaces within its bounds. The specifics of the mesh that is generated can be changed using settings 
+- for example, setting the maximum slope angle or step height. This mesh is then used by actors in order to navigate around the level.
+
+Sphere Tracing is a form of Ray Tracing that involves projecting a sphere along a line, and recording where that sphere collides with other objects. I used
+this in order to make my AI jump. Unreal supports a number of different shape traces but I used a MultiSphereTraceByChannel, in order to project a sphere
+ along the forward vector of an actor’s motion and record each time it hit an object.
+
+What was the hardest part of the tech to implement?
+The hardest part of the Navigation Mesh to implement was to make it understand when a pawn could jump over an obstacle. Initially, the AI would just path 
+around it, even when it had the ability to just jump over it. I fixed this by increasing the size of the Max Step Height to 200, about as high as the AI 
+could jump. This meant that the navigation would run the pawn straight towards an obstacle, which would then trigger sphere collision, causing the AI to 
+jump. It worked great as long as the AI was running, but if the AI was moving too slowly, the navigation would keep running an AI into a wall, as it thought 
+it could just step over it, while being unable to jump up.
+
+How is the technology used in existing games
+Some newer games can use ray tracing to generate very realistic looking lighting, through technologies such as NVIDIA RTX. This is, however, very intensive 
+and not really viable for a lot of computers. Ray tracing, and especially ray marching(which is what sphere tracing is),  is more often used for specific 
+tasks, such as with hitscan weapons which perform a ray trace to determine they hit or not. Navigation meshes are very widely used in modern games, as they 
+provide a very simple way to allow pathfinding algorithms such as A* to be used with complex environments.
+
+How could this be used in future games?
+While researching this I found a company called Kythera AI bragging about their ability to dynamically generate navigation meshes in real time over large 
+areas. This could potentially allow for levels to be randomly or unpredictably mutated in real time on a large scale, while still allowing AI to navigate 
+them. This could be used to create very intensive RTS games, with an AI that is capable of huge changes in the map very quickly, for example. 
+
+I already mentioned how ray tracing is beginning to be used to render lighting in real time, but that this is too intensive for a lot of computers. 
+As computing power increases this may become a lot more viable, and we will probably see it used a lot more. 
